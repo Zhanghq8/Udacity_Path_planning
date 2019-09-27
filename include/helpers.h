@@ -22,7 +22,7 @@ const int LEFTLANE = 0;
 const int RIGHTLANE = 2;
 
 const double DANGERGAP = 0.0001;
-const double MAXGAP = 500;
+const double MAXGAP = 200;
 const double DANGERVELOCITY = 60.0;
 const double DANGERCOST = 10000.0;
 
@@ -38,10 +38,10 @@ const double LOOKABEHIND_DISTANCE = 30.0;
 const double ACTION_FRONT_DISTANCE = 50.0;
 const double ACTION_BACK_DISTANCE = 20.0;
 
-const double FOLLOW_DISTANCE = 20.0;
+const double FOLLOW_DISTANCE = 15.0;
 
 // next s point
-const double DELTA_S = 30.0;
+const double DELTA_S = 45.0;
 
 // the number of points to predict
 const int NUM_PREDICT_PT = 50;
@@ -54,9 +54,9 @@ const int NUM_PREDICT_PT = 50;
 // const double TURN_PENALTY_FACTOR = 1.4; // must be x > 1
 
 // cost parameters
-const double RELATIVE_VEL_COST = 1;
-const double MAX_VEL_COST = 1;
-const double DIS_COST = 100;
+const double RELATIVE_VEL_COST = 1.0;
+const double MAX_VEL_COST = 1.0;
+const double DIS_COST = 100.0;
 
 const double TIME_STEP = 0.02;
 const double MS2MPH = 2.24; // 10m/s
