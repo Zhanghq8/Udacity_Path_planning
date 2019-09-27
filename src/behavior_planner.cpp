@@ -85,8 +85,9 @@ LaneType Behavior_planner::update_state(const Vehicle &myCar, const std::vector<
 				// 	next_lane = myCar.lane_at_right;
 				// }
 			} 
-			else {
+			else if (gap[FRONT][CURRENTLANE] > ACTION_FRONT_DISTANCE) {
 				reference_vel = MAX_VEL;
+				state = BehaviorType::LANECLEAR;
 				next_lane = myCar.current_lane;
 			}
 
