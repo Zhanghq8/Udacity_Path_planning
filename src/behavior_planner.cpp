@@ -86,25 +86,28 @@ LaneType Behavior_planner::update_state(const Vehicle &myCar, const std::vector<
 				// }
 			} 
 			else if (gap[FRONT][CURRENTLANE] > ACTION_FRONT_DISTANCE) {
+				std::cout << "greater distance!!" << std::endl;
 				reference_vel = MAX_VEL;
 				state = BehaviorType::LANECLEAR;
 				next_lane = myCar.current_lane;
 			}
-
+			// else if (gap[FRONT][CURRENTLANE] > SAFE_FRONT_GAP) {
 			if (is_safe_left == true && cost[LEFTLANE] <= cost[RIGHTLANE] && cost[LEFTLANE] < cost[CURRENTLANE]) {
 				state = BehaviorType::TURNLEFT;
 				// std::cout << "state: TURNLEFT" << std::endl;
 				next_lane = myCar.lane_at_left;
-				reference_vel = MAX_VEL;
+				// reference_vel = MAX_VEL;
 				// LANE?
 			}
-			else if (is_safe_right == true && cost[RIGHTLANE] <= cost[LEFTLANE] && cost[RIGHTLANE] < cost[CURRENTLANE]) {
+			if (is_safe_right == true && cost[RIGHTLANE] <= cost[LEFTLANE] && cost[RIGHTLANE] < cost[CURRENTLANE]) {
 				state = BehaviorType::TURNRIGHT;
 				// std::cout << "state: TURNRIGHT" << std::endl;
 				next_lane = myCar.lane_at_right;
-				reference_vel = MAX_VEL;
+				// reference_vel = MAX_VEL;
 				// LANE?
 			}
+
+			
 			break;
 
 		case(BehaviorType::FOLLOW):
@@ -124,42 +127,70 @@ LaneType Behavior_planner::update_state(const Vehicle &myCar, const std::vector<
 			// std::cout << "state: TURNLEFT" << std::endl;
 			std::cout << " next_d: " << d_center(next_lane) << std::endl;
 			
-			if (myCar.d > d_center(next_lane) - 0.5 && myCar.d < d_center(next_lane) + 0.5) {
+			if (myCar.d > d_center(next_lane) - 0.2 && myCar.d < d_center(next_lane) + 0.2) {
 				state = BehaviorType::LANECLEAR;
-				next_lane = myCar.current_lane;
-				reference_vel = follow_speed();
-				std::cout << " left turn finished" << std::endl;
-			}
-			else if (gap[FRONT][CURRENTLANE] < FOLLOW_DISTANCE || gap[FRONT][LEFTLANE] < FOLLOW_DISTANCE) {
-				next_lane = myCar.current_lane;
-				reference_vel = follow_speed();
-			}
-			else {
 				reference_vel = MAX_VEL;
-				next_lane = myCar.lane_at_left;
+				next_lane = myCar.current_lane;
+				// reference_vel = follow_speed();
+				std::cout << " left turn finished" << std::endl;
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
 			}
+			else if (fabs(gap[FRONT][CURRENTLANE]) < FOLLOW_DISTANCE || fabs(gap[FRONT][LEFTLANE]) < FOLLOW_DISTANCE) {
+				next_lane = myCar.current_lane;
+				reference_vel = follow_speed();
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+			}
+			// else {
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+
+			// 	reference_vel = MAX_VEL;
+			// 	next_lane = myCar.lane_at_left;
+			// }
 			break;
 
 		case(BehaviorType::TURNRIGHT):
 			// std::cout << "state: TURNRIGHT" << std::endl;
 			std::cout << " next_d: " << d_center(next_lane) << std::endl;
-			if (myCar.d > d_center(next_lane) - 0.5 && myCar.d < d_center(next_lane) + 0.5) {
+			if (myCar.d > d_center(next_lane) - 0.2 && myCar.d < d_center(next_lane) + 0.2) {
 				state = BehaviorType::LANECLEAR;
+				reference_vel = MAX_VEL;
 				std::cout << " right turn finished" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
 				next_lane = myCar.current_lane;
-				reference_vel = follow_speed();
+				// reference_vel = follow_speed();
 			}
 
 
-			else if (gap[FRONT][CURRENTLANE] < FOLLOW_DISTANCE || gap[FRONT][RIGHTLANE] < FOLLOW_DISTANCE) {
+			else if (fabs(gap[FRONT][CURRENTLANE]) < FOLLOW_DISTANCE || fabs(gap[FRONT][RIGHTLANE]) < FOLLOW_DISTANCE) {
 				next_lane = myCar.current_lane;
 				reference_vel = follow_speed();
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
 			}
 			
-			else {
-				reference_vel = MAX_VEL;
-				next_lane = myCar.lane_at_right;
-			}
+			// else {
+			// 	reference_vel = MAX_VEL;
+			// 	next_lane = myCar.lane_at_right;
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+
+			// }
 			break;
 
 		default:
@@ -373,7 +404,7 @@ void Behavior_planner::get_gap(const Vehicle &myCar, const std::vector<Vehicle>&
 }
 double Behavior_planner::d_center(const LaneType &nextlane) {
 	if (nextlane == LaneType::RIGHT) {
-		return 10.0;
+		return 9.5;
 	}
 	else if (nextlane == LaneType::LEFT) {
 		return 2.0;
@@ -395,6 +426,7 @@ void Behavior_planner::get_cost(const Vehicle &myCar) {
 		cost[RIGHTLANE] = cal_cost(myCar, diff_vel[FRONT][RIGHTLANE], vel[FRONT][RIGHTLANE], gap[FRONT][RIGHTLANE]) + 
 			cal_cost(myCar, diff_vel[BACK][RIGHTLANE], vel[BACK][RIGHTLANE], gap[BACK][RIGHTLANE]);
 	}
+
 	std::cout << "*********************" << std::endl;
 	std::cout << "left cost: " << cost[LEFTLANE] << std::endl;
 	std::cout << "current cost: " << cost[CURRENTLANE] << std::endl;
@@ -404,15 +436,15 @@ void Behavior_planner::get_cost(const Vehicle &myCar) {
 
 double Behavior_planner::cal_cost(const Vehicle &myCar, const double diff_velocity, const double velocity, const double gap_value) {
 	double cost = 0;
-	cost += fabs(myCar.v - velocity) * RELATIVE_VEL_COST;
-	cost += fabs(MAX_VEL - velocity) * MAX_VEL_COST;
+	// cost += fabs(myCar.v - velocity) * RELATIVE_VEL_COST;
+	// cost += fabs(MAX_VEL - velocity) * MAX_VEL_COST;
 	if (gap_value == DANGERGAP) {
 		cost += DANGERCOST;
 	}
 	else {
-		cost += (1 - fabs(gap_value)/LOOKAHEAD_DISTANCE) * DIS_COST;
+		cost += LOOKAHEAD_DISTANCE / fabs(gap_value) * DIS_COST;
 	}
-	cost += fabs(((myCar.s+gap_value+velocity) - (myCar.s+myCar.v))/LOOKAHEAD_DISTANCE) * DIS_COST;
+	// cost += fabs(((myCar.s+gap_value+velocity) - (myCar.s+myCar.v))/LOOKAHEAD_DISTANCE) * DIS_COST;
 	return cost;
 }
 
@@ -422,12 +454,23 @@ double Behavior_planner::follow_speed() {
 	if (vel[CURRENTLANE][FRONT] <= 0.3 && gap[CURRENTLANE][FRONT] < 5) {
 		follow_velocity = 0;
 	}
-	if (gap[CURRENTLANE][FRONT] < 15) {
-		follow_velocity = (vel[CURRENTLANE][FRONT] / 2);
-	}
+	// if (gap[CURRENTLANE][FRONT] < 10) {
+	// 	follow_velocity = std::min<double>(vel[CURRENTLANE][FRONT], vel[CURRENTLANE][FRONT] * gap[CURRENTLANE][FRONT] / 10);
+	// }
 	else {
-		follow_velocity = vel[CURRENTLANE][FRONT];
+		follow_velocity = std::min<double>(vel[CURRENTLANE][FRONT], MAX_VEL);
+		// follow_velocity = std::min<double>(follow_velocity, MAX_VEL);
+		std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+		std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+		std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+		std::cout << " vel: " << vel[CURRENTLANE][FRONT] << std::endl;
+		std::cout << " gap: " << gap[CURRENTLANE][FRONT] << std::endl;
+		// std::cout << " gap vel: " << vel[CURRENTLANE][FRONT] * gap[CURRENTLANE][FRONT] / 10 << std::endl;
+		std::cout << " follow_velocity: " << follow_velocity << std::endl;
+
 	}
+
+
 	return follow_velocity;
 }
 
