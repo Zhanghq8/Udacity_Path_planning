@@ -266,9 +266,9 @@ void Trajectory_planner::generate_next_Pts(vector<double> &next_x_vals, vector<d
 void Trajectory_planner::updateStep(double &speed, const double reference_vel) {
 	double acceleration = 0.0022; // max allowed acceleration per step 6m/s^2
 	const double mile_h2meter_s = 1609.344 / 3600.0; // 1Mph * 1609.344meter/h / 3600 = 0.44704 m/s
-	const double max_step = MAX_VEL * mile_h2meter_s * 0.02;
+	const double max_step = MAX_VEL * mile_h2meter_s * TIME_STEP;
 
-	double ref_step = std::min<double>(reference_vel * mile_h2meter_s * 0.02, max_step);
+	double ref_step = std::min<double>(reference_vel * mile_h2meter_s * TIME_STEP, max_step);
 	// check if we will potential have a collision and decelerate
 	if( mycar_speed > reference_vel ) {
 		step = std::max(step - acceleration, ref_step); // deceleration -6m/s^2
