@@ -22,7 +22,7 @@ const int LEFTLANE = 0;
 const int RIGHTLANE = 2;
 
 const double DANGERGAP = 0.0001;
-const double MAXGAP = 200;
+const double MAXGAP = 170;
 const double DANGERVELOCITY = 60.0;
 const double DANGERCOST = 10000.0;
 
