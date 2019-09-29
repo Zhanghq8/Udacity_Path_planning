@@ -133,17 +133,17 @@ LaneType Behavior_planner::update_state(const Vehicle &myCar, const std::vector<
 				next_lane = myCar.current_lane;
 				// reference_vel = follow_speed();
 				std::cout << " left turn finished" << std::endl;
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
 			}
 			else if (fabs(gap[FRONT][CURRENTLANE]) < FOLLOW_DISTANCE || fabs(gap[FRONT][LEFTLANE]) < FOLLOW_DISTANCE) {
 				next_lane = myCar.current_lane;
 				reference_vel = follow_speed();
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
 			}
 			// else {
 			// 	std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
@@ -175,10 +175,10 @@ LaneType Behavior_planner::update_state(const Vehicle &myCar, const std::vector<
 			else if (fabs(gap[FRONT][CURRENTLANE]) < FOLLOW_DISTANCE || fabs(gap[FRONT][RIGHTLANE]) < FOLLOW_DISTANCE) {
 				next_lane = myCar.current_lane;
 				reference_vel = follow_speed();
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
-				std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+				// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
 			}
 			
 			// else {
@@ -460,13 +460,13 @@ double Behavior_planner::follow_speed() {
 	else {
 		follow_velocity = std::min<double>(vel[CURRENTLANE][FRONT], MAX_VEL);
 		// follow_velocity = std::min<double>(follow_velocity, MAX_VEL);
-		std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
-		std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
-		std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
-		std::cout << " vel: " << vel[CURRENTLANE][FRONT] << std::endl;
-		std::cout << " gap: " << gap[CURRENTLANE][FRONT] << std::endl;
+		// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;	
+		// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+		// std::cout << " BUG HERE!!!!!!!!!!!!!!" << std::endl;
+		// std::cout << " vel: " << vel[CURRENTLANE][FRONT] << std::endl;
+		// std::cout << " gap: " << gap[CURRENTLANE][FRONT] << std::endl;
 		// std::cout << " gap vel: " << vel[CURRENTLANE][FRONT] * gap[CURRENTLANE][FRONT] / 10 << std::endl;
-		std::cout << " follow_velocity: " << follow_velocity << std::endl;
+		// std::cout << " follow_velocity: " << follow_velocity << std::endl;
 
 	}
 
