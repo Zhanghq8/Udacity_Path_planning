@@ -31,7 +31,7 @@ public:
 	double cal_Spline_y(double x);
 	vector<double> global2local(double yaw, double x, double y);
 	vector<double> local2global(double yaw, double x, double y);
-	void updateStep(double &speed, const double reference_vel);
+	void updateStep(const double speed, const double reference_vel);
 	double deg2rad(double x);
 	double rad2deg(double x);
 	double distance(double x1, double y1, double x2, double y2);

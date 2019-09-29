@@ -221,8 +221,6 @@ void Trajectory_planner::generate_next_Pts(vector<double> &next_x_vals, vector<d
         next_y_vals.push_back(pre_pts_y[i]);
     }
 
-    double x_add_on = 0;
-
     if (next_x_vals.size() < 2) {
     	step = 0;
     	// std::cout << "step empty: " << step << std::endl;
@@ -237,6 +235,7 @@ void Trajectory_planner::generate_next_Pts(vector<double> &next_x_vals, vector<d
     	// std::cout << "step notempty: " << step << std::endl;
     }
 
+    double x_add_on = 0;
 
     for (int i = 1; i <= NUM_PREDICT_PT - pre_pts_x.size(); i++){ // 50: defined total number of points
 
@@ -263,7 +262,7 @@ void Trajectory_planner::generate_next_Pts(vector<double> &next_x_vals, vector<d
 
 }
 
-void Trajectory_planner::updateStep(double &speed, const double reference_vel) {
+void Trajectory_planner::updateStep(const double speed, const double reference_vel) {
 	double acceleration = 0.0022; // max allowed acceleration per step 6m/s^2
 	const double mile_h2meter_s = 1609.344 / 3600.0; // 1Mph * 1609.344meter/h / 3600 = 0.44704 m/s
 	const double max_step = MAX_VEL * mile_h2meter_s * TIME_STEP;
@@ -276,7 +275,6 @@ void Trajectory_planner::updateStep(double &speed, const double reference_vel) {
 	else if(mycar_speed < reference_vel){
     	step = std::min(step + acceleration, ref_step);
   	}
-  	speed += step;
 }
 
 
